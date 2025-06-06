@@ -35,9 +35,10 @@
             <li class="nav-item">
             <a class="nav-link" href="{{route('admin.blogs')}}">Blogs</a>
             </li>
-            {{-- <li class="nav-item">
-            <a class="nav-link" href="javascript:;">Projects</a>
+            <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.pages')}}">Pages</a>
             </li>
+            {{--
             <li class="nav-item d-none d-xxl-block">
               <a class="nav-link" href="javascript:;">Events</a>
               </li>

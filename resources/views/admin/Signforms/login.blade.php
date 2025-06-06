@@ -36,21 +36,10 @@
                   <img src="{{asset('assets/images/error/login-img.jpg')}}" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-6">
-                  <div class="card-body p-4 p-sm-5">
-                    <h5 class="card-title">Sign In</h5>
-                    <p class="card-text mb-5">See your growth and get consulting support!</p>
+                  <div class="card-body p-4 p-sm-5 ">
+                    <h5 class="card-title text-center">Sign In</h5>
                     <form class="form-body" action="{{ route('admin.login') }}" method="POST">
                       @csrf
-                      <div class="d-grid">
-                        <a class="btn btn-white radius-30" href="javascript:;"><span class="d-flex justify-content-center align-items-center">
-                            <img class="me-2" src="{{asset('assets/images/icons/search.svg')}}" width="16" alt="">
-                            <span>Sign in with Google</span>
-                          </span>
-                        </a>
-                      </div>
-                      <div class="login-separater text-center mb-4"> <span>OR SIGN IN WITH EMAIL</span>
-                        <hr>
-                      </div>
                         <div class="row g-3">
                           <div class="col-12">
                             <label for="inputEmailAddress" class="form-label">Email Address</label>
@@ -78,9 +67,6 @@
                             <div class="d-grid">
                               <button type="submit" class="btn btn-primary radius-30">Sign In</button>
                             </div>
-                          </div>
-                          <div class="col-12">
-                            <p class="mb-0">Don't have an account yet? <a href="authentication-signup.html">Sign up here</a></p>
                           </div>
                         </div>
                     </form>

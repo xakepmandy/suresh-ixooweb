@@ -19,6 +19,7 @@
 
 <script>
         CKEDITOR.replace( 'description' );
+        CKEDITOR.replace( 'content' );
 </script>
 
 @yield('scripts')

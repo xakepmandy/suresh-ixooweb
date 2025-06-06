@@ -9,6 +9,8 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\SeoController;
 
 // Route::get('/', function () {
 //     return view('admin.dashboard');
@@ -81,7 +83,25 @@ Route::prefix('admin')->middleware('checklogin')->group(function () {
     Route::get('/banner/edit/{id}', [BannerController::class, 'edit'])->name('admin.banner.edit');
     Route::put('/banner/update/{id}', [BannerController::class, 'update'])->name('admin.banner.update');
     Route::get('/banner/delete/{id}', [BannerController::class, 'delete'])->name('admin.banner.delete');   
-    Route::post('/banner/status', [BannerController::class, 'status'])->name('admin.banner.toggleStatus');    
+    Route::post('/banner/status', [BannerController::class, 'status'])->name('admin.banner.toggleStatus');  
+    
+    
+//pages
+Route::get('/pages', [PageController::class, 'index'])->name('admin.pages');
+Route::get('/pages/create', [PageController::class, 'create'])->name('admin.pages.create');
+Route::post('/pages/store', [PageController::class, 'store'])->name('admin.pages.store');
+Route::get('/pages/edit/{id}', [PageController::class, 'edit'])->name('admin.pages.edit');
+Route::put('/pages/update/{id}', [PageController::class, 'update'])->name('admin.pages.update');
+Route::get('/pages/delete/{id}', [PageController::class, 'delete'])->name('admin.pages.delete');
+Route::post('/pages/status', [PageController::class, 'status'])->name('admin.pages.toggleStatus');
+Route::post('/get/subcategory', [PageController::class, 'SubCatGet'])->name('admin.getsubcategory');
+// SEO
+// Route::get('/seo/{id}', [SeoController::class, 'index'])->name('admin.seo');
+Route::get('/seo/create/{id}', [SeoController::class, 'create'])->name('admin.seo.create');
+Route::post('/seo/store', [SeoController::class, 'store'])->name('admin.seo.store');    
+Route::get('/seo/edit/{id}', [SeoController::class, 'edit'])->name('admin.seo.edit');
+Route::put('/seo/update/{id}', [SeoController::class, 'update'])->name('admin.seo.update');
+Route::get('/seo/delete/{id}', [SeoController::class, 'delete'])->name('admin.seo.delete');
     
 });
 // Authentication routes
