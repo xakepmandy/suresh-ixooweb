@@ -32,6 +32,10 @@ class ContactMail extends Mailable
             return $this->subject('Reply to Your Inquiry')
                 ->html('<p>Dear ' . $this->data['name'] . ',</p> <p>' . nl2br(e($this->data['reply_message'])) . '</p>');
         }
+        if(isset($this->data['message'])) {
+            return $this->subject($this->data['subject'])
+                ->html('<p>' . nl2br(e($this->data['message'])) . '</p>');
+        }
         $email = $this->subject('New Contact Inquiry')
             ->view('admin.inquiry.email_template') 
             ->with('data', $this->data);

@@ -92,7 +92,7 @@
 
                                         <td>
                                             <a href="{{route('admin.contacts.view',$contact->id)}}"><i class="bi bi-eye"></i></a>
-                                            <a href="{{route('admin.contacts.delete',$contact->id)}}" onclick="return confirm('Are you sure you want to delete this inquiry?');"><i class="bi bi-trash2"></i></a>
+                                            <a href="javascript:;"  onclick="confirmDelete({{ $contact->id }})"><i class="bi bi-trash2"></i></a>
 											<a href="{{route('admin.contacts.reply',$contact->id)}}"><i class="bi bi-reply" style="transform: rotateY(180deg);"></i></a>
                                         </td>
 
@@ -131,4 +131,27 @@
 						</div>
 					</div>
 				</div>
+@endsection
+@section('scripts')
+
+<script>
+
+function confirmDelete(userId) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You want to delete this user!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "/admin/contacts/delete/" + userId; 
+        }
+    });
+}
+
+</script>
 @endsection

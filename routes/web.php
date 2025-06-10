@@ -11,15 +11,17 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\SeoController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 
-// Route::get('/', function () {
+Route::get('/', function () {
+    return view('front.home');
+});
+
+
+// Route::get('/dashboard', function () {
 //     return view('admin.dashboard');
-// });
-
-
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth'])->name('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 Route::prefix('admin')->middleware('checklogin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
@@ -31,7 +33,14 @@ Route::prefix('admin')->middleware('checklogin')->group(function () {
     Route::put('/update-password', [AdminController::class, 'updatePassword'])->name('admin.update.password');
     //logout
     Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
-
+// User management
+    Route::get('/users', [UserController::class, 'users'])->name('admin.users');
+    Route::get('/users/create', [UserController::class, 'createUser'])->name('admin.users.create');
+    Route::post('/users/store', [UserController::class, 'storeUser'])->name('admin.users.store');
+    Route::get('/users/edit/{id}', [UserController::class, 'editUser'])->name('admin.users.edit');
+    Route::put('/users/update/{id}', [UserController::class, 'updateUser'])->name('admin.users.update');
+    Route::get('/users/delete/{id}', [UserController::class, 'deleteUser'])->name('admin.users.delete');
+    Route::post('/users/status', [UserController::class, 'statusUser'])->name('admin.users.toggleStatus');
     //category
     Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
     Route::get('/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
@@ -102,9 +111,15 @@ Route::post('/seo/store', [SeoController::class, 'store'])->name('admin.seo.stor
 Route::get('/seo/edit/{id}', [SeoController::class, 'edit'])->name('admin.seo.edit');
 Route::put('/seo/update/{id}', [SeoController::class, 'update'])->name('admin.seo.update');
 Route::get('/seo/delete/{id}', [SeoController::class, 'delete'])->name('admin.seo.delete');
+
+Route::get('/user-stats', [AdminController::class, 'getMonthlyUserStats']);
+
     
 });
 // Authentication routes
 
 route::get('admin/login', function () { return view('admin.Signforms.login'); })->name('login');
 Route::post('/login', [AdminController::class, 'login'])->name('admin.login');
+
+
+Route::get('/{slug}', [HomeController::class, 'show'])->name('page.show');

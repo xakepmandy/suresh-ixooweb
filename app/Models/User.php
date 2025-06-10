@@ -20,6 +20,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'profile_image',
+        'status',
+        'phone',
+        'role',
         'password',
     ];
 
@@ -45,4 +49,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+      public function getImageUrlAttribute()
+    {
+        return url('uploads/profile_images/' . $this->profile_image);
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        return $this->status ? 'Active' : 'Inactive';
+    }
+
 }

@@ -38,13 +38,13 @@ class PageController extends Controller
         $page->page_hedding = $request->page_hedding;
         $page->page_title = $request->page_title;
         $page->category_id = $request->category_id;
-        $page->subcategory_id = $request->sub_category_id;
+        $page->sub_category_id = $request->sub_category_id;
         $page->content = $request->content;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('uploads/page_images'), $imageName);
-            $page->image = 'uploads/page_images/' . $imageName;
+            $page->image =  $imageName;
         }
         $page->status = $request->status;
         $page->save();
@@ -74,13 +74,13 @@ class PageController extends Controller
         $page->page_hedding = $request->page_hedding;
         $page->page_title = $request->page_title;
         $page->category_id = $request->category_id;
-        $page->subcategory_id = $request->sub_category_id;
+        $page->sub_category_id = $request->sub_category_id;
         $page->content = $request->content;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('uploads/page_images'), $imageName);
-            $page->image = 'uploads/page_images/' . $imageName;
+            $page->image = $imageName;
         }else {
             $page->image = $page->image;
         }

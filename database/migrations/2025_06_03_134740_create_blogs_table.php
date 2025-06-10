@@ -18,6 +18,7 @@ return new class extends Migration
             $table->longText('description');
             $table->string('image')->nullable();
             $table->boolean('status')->default(1);
+            $table->integer('blog_view_count')->default(0);
             $table->timestamps();
         });
     }

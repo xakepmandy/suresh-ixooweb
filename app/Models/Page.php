@@ -53,7 +53,7 @@ class Page extends Model
     }
     public function getImageUrlAttribute()
     {
-        return url('uploads/page_images' . $this->image);
+        return url('uploads/page_images/' . $this->image);
     }
 
     public function getStatusLabelAttribute()

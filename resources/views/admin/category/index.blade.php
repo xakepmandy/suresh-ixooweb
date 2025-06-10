@@ -48,8 +48,7 @@
                                         <td>
                                             <a href="{{route('admin.category.edit',$category->id)}}"><i class="bi bi-pencil-square"></i></a>
 											<a href="{{route('admin.subcategory',$category->id)}}"><i class="bi bi-eye"></i></a>
-                                            <a href="{{route('admin.category.delete',$category->id)}}" onclick="return confirm('Are you sure you want to delete this category?');"><i class="bi bi-trash2"></i></a>
-                                        </td>
+ 											<a href="javascript:;"  onclick="confirmDelete({{ $category->id }})"><i class="bi bi-trash2"></i></a>                                        </td>
 
                                     </tr>
                                     @endforeach
@@ -103,5 +102,22 @@
             }
         });
     });
+
+	function confirmDelete(userId) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You want to delete this user!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "/admin/category/delete/" + userId; 
+        }
+    });
+}
 </script>
 @endsection

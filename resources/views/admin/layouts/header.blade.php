@@ -155,7 +155,7 @@
                       </a>
                     </div>
                     <div class="col">
-                      <a href="javascript:;">
+                      <a href="{{route('admin.users')}}">
                       <div class="apps p-2 radius-10 text-center">
                          <div class="apps-icon-box mb-1 text-white bg-danger bg-gradient">
                            <i class="bi bi-people-fill"></i>

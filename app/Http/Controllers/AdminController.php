@@ -3,15 +3,58 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use App\Models\Category;
+use App\Models\SubCategory;
+use App\Models\Blog;
+use App\Models\Contact;
+use App\Models\Banner;
+use App\Models\Team;
+use App\Models\Page;
+use App\Models\Seo;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
     //
     public function index()
     {
-        return view('admin.dashboard');
+        $users = User::where('role', 'user')->get()->count();
+        $pagestotalViews = Page::sum('page_view_count');
+        $blogstotalViews = Blog::sum('blog_view_count');
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('login')->withErrors(['access' => 'You do not have access to this page.']);
+        }
+        
+    return view('admin.dashboard', compact('users','blogstotalViews', 'pagestotalViews'));
+       
     }
-   
+
+    public function getMonthlyUserStats()
+        {
+           
+            $userStats = User::select(
+                    DB::raw('MONTH(created_at) as month'),
+                    DB::raw('COUNT(*) as total')
+                )
+                ->groupBy(DB::raw('MONTH(created_at)'))
+                ->pluck('total', 'month');
+
+            // सभी महीनों को 0 से initialize करें
+            $monthlyData = array_fill(1, 12, 0);
+
+            foreach ($userStats as $month => $count) {
+                if ($month >= 1 && $month <= 12) { // ✅ Only valid months
+            $monthlyData[$month] = $count;
+        }
+
+            }
+
+            return response()->json(array_values($monthlyData)); // return as [Jan => 120, Feb => 200, ...]
+        }
     public function login(Request $request)
     {
        $request->validate([

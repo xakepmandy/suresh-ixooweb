@@ -57,4 +57,9 @@ protected static function boot()
     {
         return $this->belongsTo(Category::class);
     }
+
+
+    public function pages() {
+    return $this->hasMany(Page::class);
+}
 }

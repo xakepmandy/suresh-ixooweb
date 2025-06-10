@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('image');
             $table->boolean('status')->default(true);
             $table->foreignId('category_id');
-            $table->foreignId('subcategory_id');
+            $table->foreignId('sub_category_id');
+            $table->integer('page_view_count')->default(0);
             $table->timestamps();
         });
     }

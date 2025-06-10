@@ -42,7 +42,7 @@
                             <div class="widget-icon mx-auto mb-3 bg-white-1 text-white">
                               <i class="bi bi-file-earmark-break-fill"></i>
                             </div>
-                             <h3 class="text-white">25</h3>
+                             <h3 class="text-white">{{$pagestotalViews}}</h3>
                              <p class="mb-0 text-white">Pages</p>
                           </div>
                         </div>
@@ -53,7 +53,7 @@
                             <div class="widget-icon mx-auto mb-3 bg-white-1 text-white">
                               <i class="bi bi-hdd-fill"></i>
                             </div>
-                            <h3 class="text-white">35</h3>
+                            <h3 class="text-white">{{$blogstotalViews}}</h3>
                              <p class="mb-0 text-white">Posts</p>
                           </div>
                         </div>
@@ -64,7 +64,7 @@
                             <div class="widget-icon mx-auto mb-3 bg-white-1 text-white">
                               <i class="bi bi-people-fill"></i>
                             </div>
-                            <h3 class="text-white">16</h3>
+                            <h3 class="text-white">{{$users}}</h3>
                              <p class="mb-0 text-white">Users</p>
                           </div>
                         </div>
